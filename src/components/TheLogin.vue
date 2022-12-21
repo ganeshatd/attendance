@@ -146,6 +146,7 @@ body {
   </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
   name: "TheLogin",
   data() {
@@ -161,7 +162,18 @@ export default {
     },
     LoginUser() {
       console.log("Login user");
-      this.$router.replace({ name: "form" });
+      axios({
+          url: "http://localhost:4000/",
+          method: "post",
+          data: { "id": "ATD04", "password": "automatad@04"},
+        })
+          .then(function (res) {
+            console.log(res);      
+            // this.$router.replace({ name: "form" });
+          })
+          .catch(function (err) {
+            console.log(err);
+          });      
     },
   },
 };
