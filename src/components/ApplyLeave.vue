@@ -56,6 +56,18 @@ body {
   box-shadow: 3px 3px 5px #012a4a;
 }
 
+.front-1 {
+  width: 100%;
+  height: 100%;
+  padding: 40px;
+  display: flex;
+  border-radius: 5px;
+  position: absolute;
+  align-items: center;
+  flex-direction: column;
+  background-color: #013a63;
+  box-shadow: 3px 3px 5px #012a4a;
+}
 .front {
   width: 100%;
   height: 100%;
@@ -123,6 +135,20 @@ body {
   background-color: aqua;
 }
 
+.container .al-container {
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.container .al-container .bubble { 
+ background: red;
+ color: white;
+ width: 8px;
+ height: 8px;
+ padding: 2px;
+ border-radius: 50%;
+}
+
 #frontSide {
   display: none;
 }
@@ -141,7 +167,21 @@ body {
     <div class="main">
       <div class="cont">
         <div class="container">
-          <div id="square">
+          <div class="al-container" @click="gotoApproveWinow()">
+                <div v-if="!approveWindow">
+                  Pending Notification 
+                  <span class="bubble"> 10 </span>               
+                </div>
+                <div v-else>
+                  &lt&lt Apply Leave
+                </div>
+          </div>          
+          <div id="square" v-if="approveWindow">
+              <div class="front-1">
+                <LeaveApproval name="ganesh" date="somedate" reason="sick"></LeaveApproval>
+              </div>
+          </div>                
+          <div id="square" v-else>
             <div class="front">
               <h1>Apply Leave</h1>
               <div class="form-container">
@@ -188,6 +228,7 @@ body {
               </div>
             </div>
           </div>
+          
         </div>
         <div class="calender-container">
           <iframe
@@ -205,18 +246,21 @@ body {
 </template>
 <script>
 import Datepicker from "@vuepic/vue-datepicker";
+import LeaveApproval from '../components/LeaveApproval.vue'
 import "@vuepic/vue-datepicker/dist/main.css";
 
 export default {
   name: "TheLogin",
   components: {
     Datepicker,
+    LeaveApproval
   },
   data() {
     return {
       ename: null,
       reason: null,
       date: null,
+      approveWindow: false,
       managerlist: ['California', 'Colorado', 'Florida', 'Georgia', 'Texas', 'Wyoming']
     }
   },
@@ -228,6 +272,10 @@ export default {
     logout(){
       console.log("logout");
       this.$router.replace({ name: "home" });
+    },
+    gotoApproveWinow(){
+
+      this.approveWindow = !this.approveWindow;
     }
   },
 };
