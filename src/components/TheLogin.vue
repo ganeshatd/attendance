@@ -122,9 +122,9 @@ body {
               <input
                 required
                 type="email"
-                v-model="email"
+                v-model="eid"
                 id="email"
-                placeholder="Email"
+                placeholder="ID"
               />
               <input
                 required
@@ -151,7 +151,7 @@ export default {
   name: "TheLogin",
   data() {
     return {
-      email: null,
+      eid: null,
       password: null
     };
   },
@@ -161,11 +161,15 @@ export default {
       this.$router.replace({ name: "forgot" });
     },
     LoginUser() {
+      console.log(this.eid)
+      console.log(this.password)
       console.log("Login user");
+      this.$router.replace({ name: "form" });
       axios({
           url: "http://localhost:4000/",
           method: "post",
-          data: { "id": "ATD04", "password": "automatad@04"},
+          data: { "id": 
+          "ATD04", "password": "automatad@04"},
         })
           .then(function (res) {
             console.log(res);      

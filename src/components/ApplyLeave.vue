@@ -204,6 +204,7 @@ body {
                 />
                 <v-select
                   label="Type"
+                  v-model="leaveType"
                   :items="[
                     'Sick',
                     'Casual',
@@ -219,9 +220,10 @@ body {
                 />
                 <v-select
                   label="Manager"
+                  v-model="manager"
                   :items="managerList"
                 ></v-select>
-                <button type="submit">Submit</button>
+                <button type="submit"  @click="submitUser()">Submit</button>
                 <div class="forgot-pw-container" @click="logout()">
                   Logout               
                 </div>                
@@ -261,6 +263,8 @@ export default {
       reason: null,
       date: null,
       approveWindow: false,
+      leaveType: null,
+      manager: null,
       managerlist: ['California', 'Colorado', 'Florida', 'Georgia', 'Texas', 'Wyoming']
     }
   },
@@ -276,6 +280,9 @@ export default {
     gotoApproveWinow(){
 
       this.approveWindow = !this.approveWindow;
+    },
+    submitUser(){
+      console.log("submitUser")
     }
   },
 };
