@@ -6,13 +6,11 @@ import TheLogin from './components/TheLogin.vue'
 <template>
   <header>
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
+      <!-- <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/form">Form</RouterLink>
         <RouterLink to="/forgot">Forgot</RouterLink>
-      </nav>
+      </nav> -->
     </div>
   </header>
 
